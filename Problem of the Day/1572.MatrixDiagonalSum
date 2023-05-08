@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int diagonalSum(vector<vector<int>>& mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+
+        int leftSum = 0;
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(i == j) leftSum += mat[i][j];
+            }
+        }
+
+        int rightSum = 0;
+
+        int j = n-1;
+        for(int i=0; i<m; i++)  {
+            if(i == j) {
+                j--;
+                continue;
+            }
+            else
+                rightSum += mat[i][j--];
+        }
+
+
+        return leftSum + rightSum;
+    }
+};
