@@ -1,0 +1,52 @@
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> v(n, vector<int> (n));
+        
+        int dir = 1;
+        
+        int l=0, r=n-1, t=0, b=n-1;
+        
+        int k = 1;
+        while(l<=r && t<=b) {
+            
+            // left -> right
+            if(dir == 1) {
+                for(int i=l; i<=r; i++) {
+                    v[t][i] = k++;
+                }
+                t++;
+                dir = 2;
+            }
+            
+            // top -> down
+            if(dir == 2) {
+                for(int i=t; i<=b; i++) {
+                    v[i][r] = k++;
+                }
+                r--;
+                dir = 3;
+            }
+            
+            // right -> left
+            if(dir == 3) {
+                for(int i=r; i>=l; i--) {
+                    v[b][i] = k++;
+                }
+                b--;
+                dir = 4;
+            }
+            
+            // down -> top
+            if(dir == 4) {
+                for(int i=b; i>=t; i--) {
+                    v[i][l] = k++;
+                }
+                l++;
+                dir = 1;
+            } 
+        }
+        
+        return v;
+    }
+};
