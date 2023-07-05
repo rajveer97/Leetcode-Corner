@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+        int zero = -1, ans = 0, one = 0, n = nums.size();
+
+        for(int i=0; i<n; i++) {
+            if(nums[i] == 0) {
+                if(zero == -1)   // 0 is not found till now in the given array
+                    zero = i;
+                else 
+                {
+                    one = i - zero - 1;  // sub 1 since we need to dlt a number
+                    zero = i;
+                }
+            }
+            else {
+                one++;
+                ans = max(ans, one);
+            }
+        }
+
+        return ans == n ? n-1 : ans;
+    }
+};
